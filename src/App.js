@@ -64,16 +64,6 @@ function App() {
 	const toPrice = (price) => {
 		setTotalPrice(totalPrice + price);
 	};
-	const buy = () => {
-		setShow(false);
-		setHistoryList([
-			...historyList,
-			{ list: { ...list }, totolPrice: totalPrice },
-		]);
-
-		setList([]);
-		setTotalPrice(0);
-	};
 
 	return (
 		<div className="App">
