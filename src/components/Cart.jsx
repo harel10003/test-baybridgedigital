@@ -99,28 +99,4 @@ function Cart({ setList, buy }) {
 	);
 }
 
-// import React, { useContext } from 'react';
-// import { Button, Card } from 'react-bootstrap';
-// import ContextApi from '../../ContextApi';
-
-// function product({ index, image, title, price, id, description }) {
-//     const {addProduct}= useContext(ContextApi);
-// 	return (
-// 		<div>
-// 			<Card>
-// 				<Card.Img variant="top" src={image} width="80px" />
-// 				<Card.Body>
-// 					<Card.Title>{title}</Card.Title>
-// 					<Card.Text>{price}$</Card.Text>
-// 					<Button variant="primary" onClick={()=>addProduct(index)}>+</Button>
-// 					<Button variant="primary">-</Button>
-// 					<Button variant="primary">delete</Button>
-// 				</Card.Body>
-// 			</Card>
-// 		</div>
-// 	);
-// }
-
-// export default product;
-
 export default Cart;

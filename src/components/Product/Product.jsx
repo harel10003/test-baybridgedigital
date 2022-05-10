@@ -31,9 +31,7 @@ function Product({ image, title, price, id, index }) {
 							display: list.includes(id) ? 'inline' : 'none',
 						}}
 						variant="primary"
-						onClick={() =>
-							addProduct('less', index, title, id, price)
-						}
+						onClick={() => addProduct('less', id, price)}
 					>
 						-
 					</Button>
@@ -44,9 +42,7 @@ function Product({ image, title, price, id, index }) {
 							display: list.includes(id) ? 'inline' : 'none',
 						}}
 						variant="primary"
-						onClick={() =>
-							addProduct('delete', index, title, id, price)
-						}
+						onClick={() => addProduct('delete', id, price)}
 					>
 						delete
 					</Button>
