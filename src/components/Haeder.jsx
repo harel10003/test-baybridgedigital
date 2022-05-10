@@ -5,7 +5,7 @@ import { MdPriceCheck } from 'react-icons/md';
 import ContextApi from '../ContextApi';
 import Cart from './Cart';
 
-function haeder({ totolPrice, list, setShow, show }) {
+function haeder({ totolPrice, list, setShow, show, delivery }) {
 	return (
 		<div className="haeder_container">
 			<div className="haeder_icon" onClick={() => setShow(false)}>
@@ -17,7 +17,7 @@ function haeder({ totolPrice, list, setShow, show }) {
 				🛒 {totolPrice.toFixed(2)}$
 			</div>
 			<div className="haeder_icon" onClick={() => setShow(false)}>
-				<MdDeliveryDining /> {list.length >= 4 ? '10$' : '5$'}
+				<MdDeliveryDining /> {delivery}
 			</div>
 			<div
 				style={{

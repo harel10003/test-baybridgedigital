@@ -3,12 +3,13 @@ import { Button } from 'react-bootstrap';
 import '../App.css';
 import ContextApi from '../ContextApi';
 function Cart({ setList, buy }) {
-	const { list, productsList, addProduct, totalPrice } =
+	const { list, productsList, addProduct, totalPrice, delivery } =
 		useContext(ContextApi);
 	<div className="cart_totalPrice">total: {totalPrice}$</div>;
 	let tempList = list
 		.map((p) => p)
 		.filter((value, index, array) => array.indexOf(value) === index);
+	let total = totalPrice + delivery;
 	return (
 		<div>
 			<table>
@@ -90,9 +91,7 @@ function Cart({ setList, buy }) {
 				</tbody>
 			</table>
 
-			<div className="cart_totalPrice">
-				total: {totalPrice.toFixed(2)}$
-			</div>
+			<div className="cart_totalPrice">total: {total.toFixed(2)}$</div>
 			<button
 				style={{ display: list.length === 0 ? 'none' : 'inline' }}
 				onClick={() => {

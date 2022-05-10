@@ -8,17 +8,23 @@ import Haeder from './components/Haeder';
 
 function App() {
 	const [productsList, setProductsList] = useState([]);
+	const [list, setList] = useState([]);
 	useEffect(() => {
-		setProductsList([]);
+		if (productsList.length === 0) {
+			fetch('https://fakestoreapi.com/products')
+				.then((res) => res.json())
+				.then((json) => setProductsList(json));
+		}
 		// inputRef.current.focus();
-		fetch('https://fakestoreapi.com/products')
-			.then((res) => res.json())
-			.then((json) => setProductsList(json));
+
+		if (list.length >= 4) setDelivery(10);
+		else if (list.length > 0) setDelivery(5);
+		else setDelivery(0);
 
 		/*to swap the cart and push */
-	}, []);
+	}, [list]);
 
-	const [list, setList] = useState([]);
+	const [delivery, setDelivery] = useState(0);
 	const [historyList, setHistoryList] = useState([]);
 	const [show, setShow] = useState(false);
 	const [totalPrice, setTotalPrice] = useState(0);
@@ -40,7 +46,6 @@ function App() {
 			toPrice(-price);
 			/*to change in the db */
 		} else if (action == 'delete') {
-			debugger;
 			let arr = newList;
 			let priceDelete =
 				productsList[id - 1].price * arr.filter((p) => p === id).length;
@@ -87,6 +92,7 @@ function App() {
 					toPrice,
 					buy,
 					showMinus,
+					delivery,
 				}}
 			>
 				<Haeder
@@ -94,6 +100,7 @@ function App() {
 					setShow={setShow}
 					show={show}
 					list={list}
+					delivery={delivery}
 				/>
 				<Routes>
 					<Route path="/" element={<Home />} />
