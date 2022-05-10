@@ -1,14 +1,15 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { MdDeliveryDining } from 'react-icons/md';
 import { MdPriceCheck } from 'react-icons/md';
 
 import ContextApi from '../ContextApi';
+import Cart from './Cart';
 
-function haeder({ totolPrice, setShow, show, list }) {
+function haeder({ totolPrice, list, setShow, show }) {
 	return (
 		<div className="haeder_container">
 			<div className="haeder_icon" onClick={() => setShow(false)}>
-				🏠 {}
+				🏠
 			</div>
 
 			<div>API- SHOP</div>
@@ -17,6 +18,14 @@ function haeder({ totolPrice, setShow, show, list }) {
 			</div>
 			<div className="haeder_icon" onClick={() => setShow(false)}>
 				<MdDeliveryDining /> {list.length >= 4 ? '10$' : '5$'}
+			</div>
+			<div style={{ display: list.length == 0 ? 'none' : 'inline' }}>
+				<button onClick={() => setShow(!show)}>
+					{show ? 'close cart' : 'open cart'}
+				</button>
+			</div>
+			<div style={{ display: show ? 'inline' : 'none' }}>
+				<Cart />
 			</div>
 		</div>
 	);

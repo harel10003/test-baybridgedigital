@@ -14,18 +14,20 @@ function App() {
 		fetch('https://fakestoreapi.com/products')
 			.then((res) => res.json())
 			.then((json) => setProductsList(json));
+
+		/*to swap the cart and push */
 	}, []);
 
 	const [list, setList] = useState([]);
 	const [historyList, setHistoryList] = useState([]);
 	const [show, setShow] = useState(false);
-	const [totolPrice, setTotolPrice] = useState(0);
-	const addProduct = (action, index, title, id, price) => {
+	const [totalPrice, setTotalPrice] = useState(0);
+	const addProduct = (action, id, price) => {
 		let newList = list;
 		if (action == 'add') {
-			setList([...list, id]);
-
+			setList([...newList, id]);
 			toPrice(price);
+			/*to change in the db */
 		} else if (action == 'less') {
 			let indx;
 			for (let i = 0; i < newList.length; i++)
@@ -33,12 +35,20 @@ function App() {
 					indx = i;
 					break;
 				}
-			let tempLisat = newList.splice(indx, 1);
+			let tempList = newList.splice(indx, 1);
 			setList([...newList]);
 			toPrice(-price);
+			/*to change in the db */
 		} else if (action == 'delete') {
-			let tempListProduct = productsList.filter((p) => p.id !== id);
-			setProductsList([...tempListProduct]);
+			debugger;
+			let arr = newList;
+			let priceDelete =
+				productsList[id - 1].price * arr.filter((p) => p === id).length;
+			let tempList = newList.filter((p) => p !== id);
+			setList([...tempList]);
+			toPrice(-priceDelete);
+
+			/*to change in the db */
 		}
 	};
 
@@ -47,17 +57,17 @@ function App() {
 		else return 'none';
 	};
 	const toPrice = (price) => {
-		setTotolPrice(totolPrice + price);
+		setTotalPrice(totalPrice + price);
 	};
 	const buy = () => {
 		setShow(false);
 		setHistoryList([
 			...historyList,
-			{ list: { ...list }, totolPrice: totolPrice },
+			{ list: { ...list }, totolPrice: totalPrice },
 		]);
 
 		setList([]);
-		setTotolPrice(0);
+		setTotalPrice(0);
 	};
 
 	return (
@@ -71,8 +81,8 @@ function App() {
 					setHistoryList,
 					show,
 					setShow,
-					totolPrice,
-					setTotolPrice,
+					totalPrice,
+					setTotalPrice,
 					addProduct,
 					toPrice,
 					buy,
@@ -80,7 +90,7 @@ function App() {
 				}}
 			>
 				<Haeder
-					totolPrice={totolPrice}
+					totolPrice={totalPrice}
 					setShow={setShow}
 					show={show}
 					list={list}

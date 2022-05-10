@@ -20,9 +20,7 @@ function Product({ image, title, price, id, index }) {
 							cursor: 'pointer',
 						}}
 						variant="primary"
-						onClick={() =>
-							addProduct('add', index, title, id, price)
-						}
+						onClick={() => addProduct('add', id, price)}
 					>
 						+
 					</Button>
@@ -43,6 +41,7 @@ function Product({ image, title, price, id, index }) {
 					<Button
 						style={{
 							cursor: 'pointer',
+							display: list.includes(id) ? 'inline' : 'none',
 						}}
 						variant="primary"
 						onClick={() =>
