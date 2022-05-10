@@ -80,7 +80,7 @@ function App() {
 					setTotalPrice,
 					addProduct,
 					toPrice,
-					buy,
+
 					showMinus,
 					delivery,
 				}}

@@ -92,12 +92,7 @@ function Cart({ setList, buy }) {
 			</table>
 
 			<div className="cart_totalPrice">total: {total.toFixed(2)}$</div>
-			<button
-				style={{ display: list.length === 0 ? 'none' : 'inline' }}
-				onClick={() => {
-					buy();
-				}}
-			>
+			<button style={{ display: list.length === 0 ? 'none' : 'inline' }}>
 				BUY
 			</button>
 		</div>
