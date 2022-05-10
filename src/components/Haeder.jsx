@@ -19,7 +19,12 @@ function haeder({ totolPrice, list, setShow, show }) {
 			<div className="haeder_icon" onClick={() => setShow(false)}>
 				<MdDeliveryDining /> {list.length >= 4 ? '10$' : '5$'}
 			</div>
-			<div style={{ display: list.length == 0 ? 'none' : 'inline' }}>
+			<div
+				style={{
+					display:
+						list.length == 0 && show == false ? 'none' : 'inline',
+				}}
+			>
 				<button onClick={() => setShow(!show)}>
 					{show ? 'close cart' : 'open cart'}
 				</button>
